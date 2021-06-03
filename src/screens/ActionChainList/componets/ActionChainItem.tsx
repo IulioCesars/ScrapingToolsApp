@@ -2,17 +2,23 @@ import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
 import { List } from "react-native-paper";
 import { ActionChainModel } from "../../../models/ActionChainModel";
+import { ScreenActionNavigationProp } from "../../../navigations/ActionChainList/ActionChainListNavParams";
 
 
 export function ActionChainItem(props: {model: ActionChainModel }) {
     const { model } = props;
     const [expanded, setExpanded] = useState(false);
-    const navigator = useNavigation();
+    const navigator = useNavigation<ScreenActionNavigationProp>();
     
-
     const onPressAccordion = () => setExpanded(!expanded);
     const onPressAddNew = () => {
-        navigator.navigate("ScrapingAction");
+        navigator.navigate("ScrapingAction", { 
+            scrapingTask: {
+                template: model.name,
+                baseURL: "",
+                taskName: ""
+            }
+         });
     };
 
     return (

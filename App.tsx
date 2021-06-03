@@ -6,6 +6,8 @@ import { DrawerNavigator } from './src/navigations/DrawerNavigator';
 
 export default function App() {
   return (
+    <SafeAreaView style={{ flex: 1 }} >
       <DrawerNavigator />
+    </SafeAreaView>
   );
 }

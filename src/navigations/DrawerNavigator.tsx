@@ -8,7 +8,7 @@ export function DrawerNavigator() {
 
     return (
         <NavigationContainer>
-            <nav.Navigator >
+            <nav.Navigator>
                 <nav.Screen name="ActionChainListNavigator" component={ActionChainListNavigator}
                     options={{ title: "Action Chains" }} />
             </nav.Navigator>

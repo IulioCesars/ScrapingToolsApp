@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
 import { ActionChainModel } from '../../models/ActionChainModel';
+import { ScrapingToolsService } from '../../services/ScrapingToolsService';
 import { ActionChainItem } from './componets/ActionChainItem';
 
 export function ActionChainListView() {
     const [ actionChains, setActionChains ] = useState<ActionChainModel[]>([]);
 
     useEffect(()=> {
-        setActionChains([
-            { name: "TEST", actions: [] }
-        ]);
+        var service = new ScrapingToolsService();
+        service.getChainCollections()
+            .then(it => {
+                setActionChains(it.map(x => { return { name: x, actions: [] }; }))
+            });
     }, []);
 
     return (
